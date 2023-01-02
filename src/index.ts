@@ -216,8 +216,9 @@ const commands: Command[] = [
 	{ delay: 2, text: "naturals" },
 	{ delay: 7, text: "let cubes = naturals.map(n => n.cube())" },
 	{ delay: 3, text: "cubes" },
-	{ delay: 7, text: "let [one, eight, ...{ length: numOthers }] = cubes" },
-	{ delay: 5, text: "console.log(one + eight * numOthers)" },
+	{ delay: 7, text: "let [one, eight, ...{ length: L }] = cubes" },
+	{ delay: 5, text: "let result = { v: one + eight, L }" },
+	{ delay: 7, text: "result.self = new Set([ result ])" },
 ];
 
 const fps = 18;
