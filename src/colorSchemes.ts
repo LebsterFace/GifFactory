@@ -64,7 +64,7 @@ const UNUSED = {
 
 export default {
 	chosenScheme() {
-		return this.ONEHALFDARK;
+		return this.DRACULA;
 	},
 
 	VGA: {
@@ -127,7 +127,6 @@ export default {
 		[BRIGHT_CYAN]: "#A4FFFF",
 		[BRIGHT_WHITE]: "#FFFFFF",
 	},
-
 	ONEHALFDARK: {
 		BACKGROUND: "#282C34",
 		[RESET]: "#DCDFE4",

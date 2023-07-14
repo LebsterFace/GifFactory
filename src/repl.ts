@@ -15,6 +15,7 @@ const execPromise = (command: string, stdin: string | null = null): Promise<stri
 			}
 		});
 
+		child.stderr!.pipe(process.stderr);
 		if (stdin !== null) {
 			child.stdin!.write(stdin);
 			child.stdin!.end();
@@ -41,25 +42,28 @@ const spawnPromise = (command: string) => {
 	});
 };
 
-export type ParsedStdout =
+export type Output =
 	{ type: "ansi", value: string; } |
 	{ type: "text", value: string; } |
 	{ type: "newline"; };
 
-const parseStdout = (output: string): ParsedStdout[] => {
+const parseStdout = (output: string): Output[] => {
 	return output.split(/(\[\d{1,2}m|\n)/g).map(value => {
 		if (value in ANSI) {
-			return { type: "ansi", value: ANSI[value as keyof typeof ANSI] };
+			return { type: "ansi", value: ANSI[value as keyof typeof ANSI] } as const;
 		} else if (value === "\n") {
-			return { type: "newline" };
+			return { type: "newline" } as const;
 		} else {
-			return { type: "text", value };
+			return { type: "text", value } as const;
 		}
+	}).filter(({ type, value }) => {
+		if (type === "text" && value === "") return false;
+		return true;
 	});
 };
 
 const LebJS = async (commands: string[]) => {
-	const CMD = `java -cp ${classpath} xyz.lebster.Main --AST --gif`;
+	const CMD = `java -cp ${classpath} xyz.lebster.Main --gif`;
 	console.log(CMD);
 
 	const stdout = await execPromise(CMD, commands.join("\n"));
