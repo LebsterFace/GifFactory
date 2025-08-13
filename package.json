@@ -1,0 +1,26 @@
+{
+	"name": "giffactory",
+	"version": "1.0.0",
+	"description": "Renders a GIF for the LebJS README",
+	"main": "dist/index.js",
+	"type": "module",
+	"keywords": [],
+	"author": "Lebster",
+	"license": "ISC",
+	"dependencies": {
+		"canvas": "^3.1.2",
+		"pretty-bytes": "^7.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^24.2.1",
+		"typescript": "^5.9.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LebsterFace/GifFactory.git"
+	},
+	"bugs": {
+		"url": "https://github.com/LebsterFace/GifFactory/issues"
+	},
+	"homepage": "https://github.com/LebsterFace/GifFactory#readme"
+}
